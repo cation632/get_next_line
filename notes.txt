@@ -1,0 +1,52 @@
+"GET_NEXT_LINE" é uma função que lê uma linha de um arquivo de texto
+e retorna essa linha como uma string.
+
+
+
+Buffer- e uma area de memoria temporaria usada para armazenar dados temp.
+        O buffer e usado para armazenar temp. a linha que acabou de ser lida.
+        O tamanho do buffer deve ser grande o suficiente para acomodar a 
+    linha mais longa que pode ser lida, mas não deve ser muito grande 
+    para evitar desperdício de memória.
+
+
+
+Variavel estatica- uma variavel que fica guardada e so e 
+                   destruida uma vez que o programa acaba.
+
+
+
+     Read function:
+Usada para ler dados de um arquivo ou dispositivo de entrada em um buffer de memória.
+Sintaxe:
+                ssize_t read(int fd, void *buf, size_t count);
+-"fd" é o descritor de arquivo do arquivo ou dispositivo que você deseja ler. 
+    *Por exemplo, "0" é o descritor de arquivo padrão para a entrada padrão (stdin)
+    e "1" é o descritor de arquivo padrão para a saída padrão (stdout).*
+-"buf" é um ponteiro para o buffer que receberá os dados lidos.
+-"count" é o número máximo de bytes a serem lidos.
+
+A função "read" retorna o número de bytes lidos, que pode ser menor que o número especificado
+em "count" se houver menos bytes disponíveis para ler no arquivo ou dispositivo.
+A função retorna 0 se atingir o final do arquivo e -1 se ocorrer um erro durante a leitura.
+
+
+
+search:
+-buffer size
+-read function
+
+attention:
+-watch leaks
+-read one line at a time
+-the function has to return the line that was read
+-it has to work not only for a reading file and a standart input
+-the return line has to include \n 
+    *except if the end of file was reached and does not end with a \n character*
+
+-include -D BUFFER_SIZE=n to the gcc when compiling
+    *it will define the buffer size for read()*
+    *it has to work withou it too*
+    *ex.: (for buffer size = 42) cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 <files>.c*
+
+-read as little as possible each time get_next_line() is called
